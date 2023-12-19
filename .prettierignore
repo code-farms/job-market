@@ -6,3 +6,4 @@ example/android/.idea/
 example/android/app/build/
 example/ios/build/
 example/vendor/bundle/
+__tests__
