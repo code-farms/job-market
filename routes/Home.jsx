@@ -11,9 +11,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Home = ({ navigation }) => {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View
+          style={{
+            flex: 1,
+            padding: SIZES.medium,
+          }}
+        >
           <Welcome />
           <Popularjobs />
           <Nearbyjobs />
