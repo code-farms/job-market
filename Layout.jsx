@@ -1,17 +1,18 @@
 import React, { useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "react-native-splash-screen";
 import { loadAsync } from "react-native-fonts";
 
 import Home from "./routes/Home";
-import Profile from "./routes/Profile";
 import { COLORS, icons, images } from "./constants";
 import { ScreenHeaderBtn } from "./components";
+import JobDetails from "./routes/[id]";
+import { useNavigation } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
 
 const Layout = () => {
+  const navigation = useNavigation();
   useEffect(() => {
     const loadFonts = async () => {
       try {
@@ -28,31 +29,50 @@ const Layout = () => {
     loadFonts();
   }, []);
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{
-            headerStyle: {
-              backgroundColor: COLORS.lightWhite,
-            },
-            headerTitleStyle: {
-              color: COLORS.primary,
-              fontWeight: "bold",
-              fontSize: 25,
-            },
-            headerLeft: () => (
-              <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
-            ),
-            headerRight: () => (
-              <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
-            ),
-          }}
-        />
-        <Stack.Screen name="Profile" component={Profile} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{
+          headerStyle: { backgroundColor: COLORS.lightWhite },
+          headerTitleStyle: {
+            color: COLORS.primary,
+            fontWeight: "bold",
+            fontSize: 25,
+          },
+          headerLeft: () => (
+            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%" />
+          ),
+          headerRight: () => (
+            <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" />
+          ),
+          headerTitle: "",
+        }}
+      />
+      <Stack.Screen
+        name="JobDetails"
+        component={JobDetails}
+        options={{
+          headerStyle: { backgroundColor: COLORS.lightWhite },
+          headerTitleStyle: {
+            color: COLORS.primary,
+            fontWeight: "bold",
+            fontSize: 25,
+          },
+          headerLeft: () => (
+            <ScreenHeaderBtn
+              iconUrl={icons.left}
+              dimension="60%"
+              handlePress={() => navigation.goBack()}
+            />
+          ),
+          headerRight: () => (
+            <ScreenHeaderBtn iconUrl={icons.share} dimension="60%" />
+          ),
+          headerTitle: "",
+        }}
+      />
+    </Stack.Navigator>
   );
 };
 

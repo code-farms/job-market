@@ -1,15 +1,10 @@
-import { View, Text, Button, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 import React from "react";
-import {
-  Nearbyjobs,
-  Popularjobs,
-  ScreenHeaderBtn,
-  Welcome,
-} from "../components";
-import { COLORS, icons, images, SIZES } from "../constants";
+import { Nearbyjobs, Popularjobs, Welcome } from "../components";
+import { COLORS, SIZES } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const Home = ({ navigation }) => {
+const Home = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
       <ScrollView showsVerticalScrollIndicator={false}>

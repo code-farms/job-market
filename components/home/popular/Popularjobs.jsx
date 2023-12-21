@@ -16,20 +16,18 @@ import useFetch from "./../../../hooks/useFetch";
 const Popularjobs = () => {
   const navigation = useNavigation();
 
-  // const [data, setdata] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(null);
+  const { data, isLoading, error } = useFetch("search", {
+    query: "React developer",
+    num_pages: "1",
+  });
 
-  try {
-    const { data, isLoading, error } = useFetch("search", {
-      query: "React developer",
-      num_pages: "1",
-    });
-  } catch (error) {
-    console.log("Data fetch error : ", error.message);
-  }
+  const [selectedJob, setSelectedJob] = useState();
 
-  // console.log(data);
+  const handleCardPress = (item) => {
+    navigation.navigate(`/job-details/${item.job_id}`);
+    setSelectedJob(item.job_id);
+    console.log(selectedJob);
+  };
 
   return (
     <View style={styles.container}>
@@ -46,21 +44,21 @@ const Popularjobs = () => {
         ) : error ? (
           <Text>Something went wrong!</Text>
         ) : (
-          <FlatList
-            data={data}
-            renderItem={(item) => (
-              <TouchableOpacity
-                onPress={() => {
-                  handleCardPress;
-                }}
-              >
-                <PopularJobCard item={item} />
-              </TouchableOpacity>
-            )}
-            keyExtractor={(item) => item?.job_id}
-            contentContainerStyle={{ columnGap: SIZES.medium }}
-            horizontal
-          />
+          <Text>Hello</Text>
+
+          // <FlatList
+          //   data={data}
+          //   renderItem={({ item }) => (
+          //     <PopularJobCard
+          //       item={item}
+          //       selectedJob={selectedJob}
+          //       handleCardPress={handleCardPress}
+          //     />
+          //   )}
+          //   keyExtractor={(item) => item?.job_id}
+          //   contentContainerStyle={{ columnGap: SIZES.medium }}
+          //   horizontal
+          // />
         )}
       </View>
     </View>

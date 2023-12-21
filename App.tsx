@@ -1,9 +1,13 @@
 import React from "react";
 import Layout from "./Layout";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
 
 function App() {
-  return <Layout />;
+  return (
+    <NavigationContainer>
+      <Layout />
+    </NavigationContainer>
+  );
 }
 
 export default App;
