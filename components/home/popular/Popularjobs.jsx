@@ -24,7 +24,7 @@ const Popularjobs = () => {
   const [selectedJob, setSelectedJob] = useState();
 
   const handleCardPress = (item) => {
-    navigation.navigate(`/job-details/${item.job_id}`);
+    navigation.navigate("JobDetails", { job_id: item.job_id });
     setSelectedJob(item.job_id);
     console.log(selectedJob);
   };
@@ -44,21 +44,21 @@ const Popularjobs = () => {
         ) : error ? (
           <Text>Something went wrong!</Text>
         ) : (
-          <Text>Hello</Text>
-
-          // <FlatList
-          //   data={data}
-          //   renderItem={({ item }) => (
-          //     <PopularJobCard
-          //       item={item}
-          //       selectedJob={selectedJob}
-          //       handleCardPress={handleCardPress}
-          //     />
-          //   )}
-          //   keyExtractor={(item) => item?.job_id}
-          //   contentContainerStyle={{ columnGap: SIZES.medium }}
-          //   horizontal
-          // />
+          <FlatList
+            data={data}
+            renderItem={({ item }) => (
+              <PopularJobCard
+                item={item}
+                selectedJob={selectedJob}
+                handleCardPress={(item) => {
+                  handleCardPress;
+                }}
+              />
+            )}
+            keyExtractor={(item) => item?.job_id}
+            contentContainerStyle={{ columnGap: SIZES.medium }}
+            horizontal
+          />
         )}
       </View>
     </View>

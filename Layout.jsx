@@ -8,6 +8,7 @@ import { COLORS, icons, images } from "./constants";
 import { ScreenHeaderBtn } from "./components";
 import JobDetails from "./routes/[id]";
 import { useNavigation } from "@react-navigation/native";
+import JobSearch from "./routes/search/[id]";
 
 const Stack = createNativeStackNavigator();
 
@@ -68,6 +69,22 @@ const Layout = () => {
           ),
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={icons.share} dimension="60%" />
+          ),
+          headerTitle: "",
+        }}
+      />
+      <Stack.Screen
+        name="JobSearch"
+        component={JobSearch}
+        options={{
+          headerStyle: { backgroundColor: COLORS.lightWhite },
+          headerShadowVisible: false,
+          headerLeft: () => (
+            <ScreenHeaderBtn
+              iconUrl={icons.left}
+              dimension="60%"
+              handlePress={() => navigation.goBack()}
+            />
           ),
           headerTitle: "",
         }}
